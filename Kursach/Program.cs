@@ -14,7 +14,6 @@ namespace Kursach
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            
         }
         public bool IsPrime(int candidate)
         {
