@@ -26,6 +26,17 @@ namespace Kursach.Controllers
         {
             _productService.AddProduct();
         }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            List<Product> products = _productService.GetAll();
+            if (products == null)
+            {
+                return NotFound();
+            }
+            return Ok(products);
+        }
     }
 }
 

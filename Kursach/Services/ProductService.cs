@@ -1,5 +1,7 @@
 using Kursach.Data;
 using Kursach.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Kursach.Services
 {
@@ -22,6 +24,11 @@ namespace Kursach.Services
             context.Product.Add(product1);
             context.SaveChanges();
             return product1;
+        }
+
+        public List<Product> GetAll()
+        {
+            return context.Product.ToList();
         }
     }
 }
