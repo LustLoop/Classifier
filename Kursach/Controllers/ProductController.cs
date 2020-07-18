@@ -21,14 +21,14 @@ namespace Kursach.Controllers
             this._productService = product;
         } 
 
-        [HttpPost]
-        public void AddNewProduct()
+        [HttpPost("post/{typeId}")]
+        public void AddNewProduct(int typeId)
         {
-            _productService.AddProduct();
+            _productService.AddProduct(typeId);
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetAll()
         {
             List<Product> products = _productService.GetAll();
             if (products == null)
@@ -36,6 +36,17 @@ namespace Kursach.Controllers
                 return NotFound();
             }
             return Ok(products);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            Product product = _productService.GetById(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
         }
     }
 }

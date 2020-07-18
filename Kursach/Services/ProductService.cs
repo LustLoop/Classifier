@@ -7,13 +7,6 @@ namespace Kursach.Services
 {
     public class ProductService
     {
-        Product product1 = new Product
-        {
-            productId = 1,
-            type = "instrument",
-            name = "test",
-            price = 10
-        };
         private AppDbContext context;
         public ProductService(AppDbContext context)
         {
@@ -21,14 +14,36 @@ namespace Kursach.Services
         }
         public Product AddProduct()
         {
-            context.Product.Add(product1);
+            Product newProduct = new Product{
+                Id = 1,
+                type = GetType(1),
+                model = "test",
+                quality = "test",
+                year = 2000,
+                name = "defaultName",
+                price = 10
+            };
+            context.Product.Add(newProduct);
             context.SaveChanges();
-            return product1;
+            return newProduct;
         }
 
         public List<Product> GetAll()
         {
             return context.Product.ToList();
+        }
+
+        public Product GetById(int id)
+        {
+            return context.Product
+                .Where(s => s.Id == id)
+                .FirstOrDefault();
+        }
+        public Type GetType(int id)
+        {
+            return context.Type
+                .Where(s => s.Id == id)
+                .FirstOrDefault();
         }
     }
 }
