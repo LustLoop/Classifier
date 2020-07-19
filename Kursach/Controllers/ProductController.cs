@@ -22,9 +22,10 @@ namespace Kursach.Controllers
         } 
 
         [HttpPost("post/{typeId}")]
-        public void AddNewProduct(int typeId)
+        public void AddNewProduct(int typeId, string model, int purposeId, int qualityId, int year, string name, double price)
         {
-            _productService.AddProduct(typeId);
+
+            _productService.AddProduct(typeId, "model", purposeId, qualityId, 2001, "random name", price);
         }
 
         [HttpGet]

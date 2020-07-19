@@ -12,6 +12,8 @@ namespace Kursach.Data
 
         public DbSet<Product> Product { get; set; }
         public DbSet<Type> Type { get; set; }
+        public DbSet<Purpose> Purpose { get; set; }
+        public DbSet<Quality> Quality { get; set; }
 
     }
 }

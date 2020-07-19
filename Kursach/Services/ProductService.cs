@@ -12,16 +12,17 @@ namespace Kursach.Services
         {
             this.context = context;
         }
-        public Product AddProduct()
+        public Product AddProduct(int typeId, string model, int purposeId, int qualityId, int year, string name, double price)
         {
-            Product newProduct = new Product{
-                Id = 1,
-                type = GetType(1),
-                model = "test",
-                quality = "test",
-                year = 2000,
-                name = "defaultName",
-                price = 10
+            Product newProduct = new Product
+            {
+                type = GetType(typeId),
+                model = model,
+                purpose = GetPurpose(purposeId),
+                quality = GetQuality(qualityId),
+                year = year,
+                name = name,
+                price = price
             };
             context.Product.Add(newProduct);
             context.SaveChanges();
@@ -42,6 +43,18 @@ namespace Kursach.Services
         public Type GetType(int id)
         {
             return context.Type
+                .Where(s => s.Id == id)
+                .FirstOrDefault();
+        }
+        public Purpose GetPurpose(int id)
+        {
+            return context.Purpose
+                .Where(s => s.Id == id)
+                .FirstOrDefault();
+        }
+        public Quality GetQuality(int id)
+        {
+            return context.Quality
                 .Where(s => s.Id == id)
                 .FirstOrDefault();
         }
