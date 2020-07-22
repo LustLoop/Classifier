@@ -6,7 +6,6 @@ namespace Kursach.Models
         public Product Product {get; set; }
         public int CategoryId {get; set; }
         public Category Category {get; set; }
-        
-        // public string value {get; set; }
+        public string value {get; set; }
     }
 }

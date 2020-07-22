@@ -29,6 +29,7 @@ namespace Kursach
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ProductService, ProductService>();
+            services.AddScoped<CategoryService, CategoryService>();
             services.AddControllersWithViews();
 
             services.AddDbContext<AppDbContext>(options =>
