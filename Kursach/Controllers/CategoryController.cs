@@ -22,9 +22,14 @@ namespace Kursach.Controllers
         } 
 
         [HttpPost("post")]
-        public void Add()
+        public IActionResult Add()
         {
-            _categoryService.Add();
+            Category category = _categoryService.Add();
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return Ok(category);
         }
 
         [HttpGet]

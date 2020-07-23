@@ -26,7 +26,26 @@ namespace Kursach.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Kursach.Models.CategoryOption", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("value")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("CategoryOptions");
                 });
 
             modelBuilder.Entity("Kursach.Models.Product", b =>
@@ -49,7 +68,7 @@ namespace Kursach.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Kursach.Models.ProductCategory", b =>
@@ -67,7 +86,16 @@ namespace Kursach.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("ProductCategory");
+                    b.ToTable("ProductCategories");
+                });
+
+            modelBuilder.Entity("Kursach.Models.CategoryOption", b =>
+                {
+                    b.HasOne("Kursach.Models.Category", "Category")
+                        .WithMany("CategoryOptions")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Kursach.Models.ProductCategory", b =>

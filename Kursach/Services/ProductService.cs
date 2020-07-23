@@ -22,19 +22,19 @@ namespace Kursach.Services
                 title = title,
                 price = price
             };
-            context.Product.Add(newProduct);
+            context.Products.Add(newProduct);
             context.SaveChanges();
             return newProduct;
         }
 
         public List<Product> GetAll()
         {
-            return context.Product.ToList();
+            return context.Products.ToList();
         }
 
         public Product GetById(int id)
         {
-            return context.Product
+            return context.Products
                 .Where(s => s.Id == id)
                 .FirstOrDefault();
         }

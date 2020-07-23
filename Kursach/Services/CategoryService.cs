@@ -17,22 +17,22 @@ namespace Kursach.Services
 
         public Category Add()
         {
-            Category newCategory = new Category{Id = 1, title = "title"};
-            context.Category.Add(newCategory);
+            Category newCategory = new Category{title = "title"};
+            context.Categories.Add(newCategory);
             context.SaveChanges();
             return newCategory;
         }
 
         public Category GetById(int id)
         {
-            return context.Category
+            return context.Categories
                 .Where(s => s.Id == id)
                 .FirstOrDefault();
         }
 
         public List<Category> GetAll()
         {
-            return context.Category.ToList();
+            return context.Categories.ToList();
         }
     }
 }

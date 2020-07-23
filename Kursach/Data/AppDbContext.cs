@@ -24,10 +24,16 @@ namespace Kursach.Data
                 .HasOne<Category>(c => c.Category)
                 .WithMany(pc => pc.ProductCategories)
                 .HasForeignKey(c => c.CategoryId);
+
+             modelBuilder.Entity<CategoryOption>()
+                .HasOne<Category>(c => c.Category)
+                .WithMany(c => c.CategoryOptions)
+                .HasForeignKey(c => c.CategoryId);
         }
 
-        public DbSet<Product> Product { get; set; }
-        public DbSet<Category> Category { get; set; }
-        public DbSet<ProductCategory> ProductCategory { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<CategoryOption> CategoryOptions { get; set; }
     }
 }
